@@ -1,3 +1,5 @@
+"use client";
+
 import {
     Card,
     CardContent,
@@ -5,6 +7,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 type Product = {
     id: number;
@@ -16,9 +19,11 @@ type Product = {
   }
 
 export default function SingleCard(product: Product) {
+  const router = useRouter();
+
   return (
     <div className="flex flex-col p-4" key={product.id}>
-          <Card className="rounded p-4 w-full shadow-lg lg:h-[500px] dark:border-gray-400 dark:shadow-white">
+          <Card className="rounded p-4 w-full shadow-lg lg:h-[500px] dark:border-gray-400 dark:shadow-white cursor-pointer" onClick={() => router.push(`/product/${product.id}`)}>
             <CardTitle className="p-4 text-center">{product?.title}</CardTitle>
             <CardContent className="flex justify-center p-4"> 
               <Image 
